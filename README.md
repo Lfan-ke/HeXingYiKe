@@ -1,1 +1,1 @@
-使用 React + Rust-WASM + LocalStorage 构建的 GitHubPage 静态对话界面
+使用 React + Rocket 构建的对话界面
