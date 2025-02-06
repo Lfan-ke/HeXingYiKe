@@ -1,0 +1,321 @@
+@import (once) "animation";
+
+@default-max-height: 9999px;
+
+:root {
+
+  --default-white: #E9EEF7;
+  --default-black: #161B08;
+  --default-light-white: #F1F6FF;
+  --default-poor-blue-white: #ebf0ff;
+  --default-dark-white: #E0E5ED;
+  --default-half-gray: fade(#161B08, 55.5%);
+  --default-white-groove: fade(#161B08, 27.5%);
+  --default-black-groove: fade(#E9EEF7, 27.5%);
+
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans SC";
+  src:
+          local("HarmonyOS Sans SC"),
+          local("HarmonyOS_Sans_SC_Regular"),
+          url("/fonts/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Regular.ttf");
+}
+
+@font-face {
+  // 由于部分字体还是太粗，所以设置一个特殊的font-weight，用来显示细的字体
+  font-family: "HarmonyOS Sans SC";
+  src:
+          local("Microsoft YaHei UI Light"),
+          local("微软雅黑 UI Light"),
+          local("Microsoft YaHei Light");
+  font-weight: 233;
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans SC";
+  src:
+          url("/fonts/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans SC";
+  src:
+          url("/fonts/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Black.ttf");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans SC";
+  src:
+          url("/fonts/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans SC";
+  src:
+          url("/fonts/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Thin.ttf");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans SC";
+  src:
+          url("/fonts/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Medium.ttf");
+  font-weight: 500;
+}
+
+:root {
+  --shadow-black: rgba(0, 0, 0, .2);
+  --shadow-white: rgba(255, 255, 255, .8);
+
+  --shadow-x-deviation: 1;
+  --shadow-y-deviation: 1;
+
+  --shadow-neg-x-deviation: -1;
+  --shadow-neg-y-deviation: -1;
+
+  --shadow-offset-x: .15em;
+  --mini-shadow-offset-x: .07em;
+
+  --shadow-offset-y: .15em;
+  --mini-shadow-offset-y: .07em;
+
+  --shadow-blur-radius: .15em;
+  --mini-shadow-blur-radius: .07em;
+
+  --shadow-spread-radius: 0;
+  --mini-shadow-spread-radius: 0;
+
+  --inset-bottom-right-white-shadow: calc(var(--shadow-offset-x) * var(--shadow-neg-x-deviation)) calc(var(--shadow-offset-y) * var(--shadow-neg-y-deviation)) var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-white) inset;
+  --mini-inset-bottom-right-white-shadow: calc(var(--mini-shadow-offset-x) * var(--shadow-neg-x-deviation)) calc(var(--mini-shadow-offset-y) * var(--shadow-neg-y-deviation)) var(--mini-shadow-blur-radius) var(--mini-shadow-spread-radius) var(--shadow-white) inset;
+
+  --inset-top-left-black-shadow: calc(var(--shadow-offset-x) * var(--shadow-x-deviation)) calc(var(--shadow-offset-y) * var(--shadow-y-deviation)) var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-black) inset;
+  --mini-inset-top-left-black-shadow: calc(var(--mini-shadow-offset-x) * var(--shadow-x-deviation)) calc(var(--mini-shadow-offset-y) * var(--shadow-y-deviation)) var(--mini-shadow-blur-radius) var(--mini-shadow-spread-radius) var(--shadow-black) inset;
+
+  --outset-top-left-white-shadow: calc(var(--shadow-offset-x) * var(--shadow-neg-x-deviation)) calc(var(--shadow-offset-y) * var(--shadow-neg-y-deviation)) var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-white);
+  --mini-outset-top-left-white-shadow: calc(var(--mini-shadow-offset-x) * var(--shadow-neg-x-deviation)) calc(var(--mini-shadow-offset-y) * var(--shadow-neg-y-deviation)) var(--mini-shadow-blur-radius) var(--mini-shadow-spread-radius) var(--shadow-white);
+
+  --outset-bottom-right-black-shadow: calc(var(--shadow-offset-x) * var(--shadow-x-deviation)) calc(var(--shadow-offset-y) * var(--shadow-y-deviation)) var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-black);
+  --mini-outset-bottom-right-black-shadow: calc(var(--mini-shadow-offset-x) * var(--shadow-x-deviation)) calc(var(--mini-shadow-offset-y) * var(--shadow-y-deviation)) var(--mini-shadow-blur-radius) var(--mini-shadow-spread-radius) var(--shadow-black);
+
+  --inset-top-left-white-shadow: calc(var(--shadow-offset-x) * var(--shadow-x-deviation)) calc(var(--shadow-offset-y) * var(--shadow-y-deviation)) var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-white) inset;
+  --mini-inset-top-left-white-shadow: calc(var(--mini-shadow-offset-x) * var(--shadow-x-deviation)) calc(var(--mini-shadow-offset-y) * var(--shadow-y-deviation)) var(--mini-shadow-blur-radius) var(--mini-shadow-spread-radius) var(--shadow-white) inset;
+
+  --outset-bottom-right-white-shadow: calc(var(--shadow-offset-x) * var(--shadow-x-deviation)) calc(var(--shadow-offset-y) * var(--shadow-y-deviation)) var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-white);
+  --mini-outset-bottom-right-white-shadow: calc(var(--mini-shadow-offset-x) * var(--shadow-x-deviation)) calc(var(--mini-shadow-offset-y) * var(--shadow-y-deviation)) var(--mini-shadow-blur-radius) var(--mini-shadow-spread-radius) var(--shadow-white);
+
+  --inset-bottom-right-black-shadow: calc(var(--shadow-offset-x) * var(--shadow-neg-x-deviation)) calc(var(--shadow-offset-y) * var(--shadow-neg-y-deviation)) var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-black) inset;
+  --mini-inset-bottom-right-black-shadow: calc(var(--mini-shadow-offset-x) * var(--shadow-neg-x-deviation)) calc(var(--mini-shadow-offset-y) * var(--shadow-neg-y-deviation)) var(--mini-shadow-blur-radius) var(--mini-shadow-spread-radius) var(--shadow-black) inset;
+
+  --outset-top-left-black-shadow: calc(var(--shadow-offset-x) * var(--shadow-neg-x-deviation)) calc(var(--shadow-offset-y) * var(--shadow-neg-y-deviation)) var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-black);
+  --mini-outset-top-left-black-shadow: calc(var(--mini-shadow-offset-x) * var(--shadow-neg-x-deviation)) calc(var(--mini-shadow-offset-y) * var(--shadow-neg-y-deviation)) var(--mini-shadow-blur-radius) var(--mini-shadow-spread-radius) var(--shadow-black);
+}
+
+.default-shadow-inset {
+  box-shadow: var(--inset-bottom-right-white-shadow),
+  var(--inset-top-left-black-shadow);
+}
+
+.default-shadow-mini-inset {
+  box-shadow: var(--mini-inset-bottom-right-white-shadow),
+  var(--mini-inset-top-left-black-shadow);
+}
+
+.default-shadow-outset {
+  box-shadow: var(--outset-top-left-white-shadow),
+  var(--outset-bottom-right-black-shadow);
+}
+
+.default-shadow-outset-reversed-only-black {  // 专门为了主页的footer准备的
+  box-shadow:
+          calc(var(--shadow-offset-x) * var(--shadow-neg-x-deviation) * -1)
+          calc(var(--shadow-offset-y) * var(--shadow-neg-y-deviation))
+          var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-black);
+}
+
+.default-shadow-mini-outset {
+  box-shadow: var(--mini-outset-top-left-white-shadow),
+  var(--mini-outset-bottom-right-black-shadow);
+}
+
+.default-shadow-inset-outset {
+  box-shadow: var(--inset-bottom-right-white-shadow),
+  var(--inset-top-left-black-shadow),
+  var(--outset-top-left-white-shadow),
+  var(--outset-bottom-right-black-shadow);
+}
+
+.default-shadow-mini-inset-outset {
+  box-shadow: var(--mini-inset-bottom-right-white-shadow),
+  var(--mini-inset-top-left-black-shadow),
+  var(--mini-outset-top-left-white-shadow),
+  var(--mini-outset-bottom-right-black-shadow);
+}
+
+.default-shadow-selected-all-light {
+  box-shadow: var(--inset-bottom-right-white-shadow),
+  var(--inset-top-left-white-shadow),
+  var(--outset-top-left-white-shadow),
+  var(--outset-bottom-right-white-shadow);
+}
+
+.default-shadow-mini-selected-all-light {
+  box-shadow: var(--mini-inset-bottom-right-white-shadow),
+  var(--mini-inset-top-left-white-shadow),
+  var(--mini-outset-top-left-white-shadow),
+  var(--mini-outset-bottom-right-white-shadow);
+}
+
+.default-shadow-active-all-dark {
+  box-shadow: var(--inset-bottom-right-black-shadow),
+  var(--inset-top-left-black-shadow),
+  var(--outset-top-left-black-shadow),
+  var(--outset-bottom-right-black-shadow);
+}
+
+.default-shadow-mini-active-all-dark {
+  box-shadow: var(--mini-inset-bottom-right-black-shadow),
+  var(--mini-inset-top-left-black-shadow),
+  var(--mini-outset-top-left-black-shadow),
+  var(--mini-outset-bottom-right-black-shadow);
+}
+
+:root {
+  --default-border-radius: 2em;
+  --default-half-border-radius: calc(var(--default-border-radius)/2);
+  --mini-default-border-radius: .5em;
+  --mini-default-half-border-radius: calc(var(--mini-default-border-radius)/2);
+
+  --default-leaf-border-radius: var(--default-border-radius) / var(--default-border-radius) 0;
+  --mini-default-leaf-border-radius: var(--mini-default-border-radius) / var(--mini-default-border-radius) 0;
+  --default-half-leaf-border-radius: var(--default-half-border-radius) / var(--default-half-border-radius) 0;
+  --mini-default-half-leaf-border-radius: var(--mini-default-half-border-radius) / var(--mini-default-half-border-radius) 0;
+}
+
+.use-border-radius {
+  border-radius: var(--default-border-radius);
+}
+
+.use-mini-border-radius {
+  border-radius: var(--mini-default-border-radius);
+}
+
+.use-half-border-radius {
+  border-radius: var(--default-half-border-radius);
+}
+
+.use-mini-half-border-radius {
+  border-radius: var(--mini-default-half-border-radius);
+}
+
+.use-leaf-border-radius {
+  border-radius: var(--default-leaf-border-radius);
+}
+
+.use-mini-leaf-border-radius {
+  border-radius: var(--mini-default-leaf-border-radius);
+}
+
+.use-half-leaf-border-radius {
+  border-radius: var(--default-half-leaf-border-radius);
+}
+
+.use-mini-half-leaf-border-radius {
+  border-radius: var(--mini-default-half-leaf-border-radius);
+}
+
+:root {
+  --default-border: 2px solid var(--default-white-groove);
+  --default-mini-border: 1px solid var(--default-white-groove);
+}
+
+.use-default-border() {
+  border: var(--default-border);
+}
+
+.use-default-mini-border() {
+  border: 1px fade(#161B08, 3.33%) solid;
+}
+
+body {
+  min-height: 100vh;
+  height: 100vh;
+  min-width: 100vw;
+  width: 100vw;
+  font-family: "HarmonyOS Sans SC",
+    "Microsoft YaHei UI Light",
+    "Microsoft YaHei UI",
+    "微软雅黑 UI Light",
+    "微软雅黑",
+    -apple-system,
+    BlinkMacSystemFont,
+    Ubuntu,
+    sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  margin: 0 auto;
+}
+
+* {
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.c(@param) { @return: @param; }
+
+.use-default-hover {
+  &:hover {
+    opacity: .85;
+  }
+}
+
+.use-default-active {
+  &:active {
+    background-color: var(--default-dark-white);
+    .default-shadow-mini-inset();
+  }
+}
+
+.use-ellipsis-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.disable-list-style() {
+  ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.disable-browser-scrollbar() {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    display: none;
+  }
+
+  &::scrollbar {
+    display: none;
+  }
+
+  &::scrollbar-thumb {
+    display: none;
+  }
+
+  scrollbar-width: none;
+}
+
+.hidden {
+  display: none;
+}

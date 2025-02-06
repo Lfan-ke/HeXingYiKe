@@ -1,0 +1,102 @@
+#main-block-wrapper {
+  font-size: 1.05em;
+  width: 64.6%;
+  margin: 0 auto;
+  min-height: 3em;
+  place-content: center;
+  font-weight: 300;
+  user-select: text;
+  &.user {
+    min-height: 2.33em;
+    margin-bottom: .5em;
+  }
+  &.assistant {
+    margin-bottom: 1.66em;
+  }
+
+  position: relative;
+
+  #main-block {
+    // 这里是消息的卡片主体！
+    width: 100%;
+    height: max-content;
+    [dev] {background-color: blue;}
+    text-align: left;
+    place-content: center;
+    word-break: break-word;
+    position: relative;
+    border-radius: .66em;
+    &.user {
+      padding: 0;
+    }
+    &.assistant {
+      padding: 1.67em;
+      background-color: white;
+      box-shadow: 0 0 8px rgba(0, 0, 0, .1);
+    }
+
+    #main {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  #icon, #page, #hint {
+    position: absolute;
+    user-select: none;
+  }
+
+  #icon {
+    width: 1.66em;
+    aspect-ratio: 1 / 1;
+    top: 0;
+    left: -2.88em;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &.user {
+      background-image: url("/src/assets/DefaultUser.png");
+    }
+    &.assistant {
+      background-image: url("/src/assets/Logo.svg");
+    }
+  }
+
+  #page {
+    top: 0;
+    right: -5em;
+    font-size: .75em;
+    font-weight: 300;
+    color: var(--default-half-gray);
+  }
+
+  #hint {
+    bottom: -1.75em;
+    left: 0;
+    font-size: .75em;
+    color: #4955f5;
+    font-weight: 400;
+    padding-left: 2em;
+
+    #generating {
+      position: relative;
+
+      &::before {
+        content: "";
+        width: 1em;
+        aspect-ratio: 1 / 1;
+        position: absolute;
+        top : .1888em;
+        left: -1.25em;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url("/src/assets/Refresh.svg");
+        @animation: --offset-easeInOutQuint;
+        .animation(rotate, 0deg, 360deg, @animation: @animation, @duration: .88s, @time-func: ease-in-out, @delay: 0);
+        animation-iteration-count: infinite;
+      }
+    }
+  }
+}

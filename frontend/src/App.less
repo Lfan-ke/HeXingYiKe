@@ -1,0 +1,392 @@
+.logo {
+  will-change: filter;
+  transition: filter 300ms;
+  object-fit: contain;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 3px #61dafbaa);
+}
+
+.logo:active {
+  filter: drop-shadow(0 0 4px #646cffaa);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+#root {
+  max-width: 1920px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  grid-template: "aside cmain";
+  grid-template-columns: 368fr 1552fr;
+
+  aside#control-wrapper {
+    grid-area: aside;
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: relative;
+    background: linear-gradient(
+        45deg, rgba(223, 234, 253, 1) 0%, rgba(228, 236, 251, 1) 67.78%, rgba(241, 241, 245, 1) 100%
+    );
+
+    #control {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      display: grid;
+      grid-template: "header" 166fr "navbar" 809fr;
+
+      #header-wrapper {
+        width: 100%;
+        height: 100%;
+        grid-area: header;
+        position: relative;
+        margin-bottom: .33em;
+
+        #header {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          place-content: center space-evenly;
+          padding-top: .5em;
+
+          #flex-logo {
+            width: min(255px, 84%, 16.6em);
+            height: 3em;
+            margin: auto;
+            display: flex;
+
+            #logo {
+              padding: 0;
+              width: 44.8%;
+            }
+          }
+
+          #flex-chat {
+            height: 2.77em;
+            width: 88%;
+            margin: auto;
+
+            #new-chat-btn {
+              width: 100%;
+              height: 100%;
+              [dev] {background-color: blueviolet}
+              border-radius: .66em;
+              place-content: center;
+              text-align: left;
+              text-indent: 2.5em;
+              position: relative;
+              color: rgba(41, 52, 255, .8);
+              border: rgba(41, 52, 255, 1) solid 1px;
+              background-color: rgba(41, 52, 255, .033);
+
+              &::before {
+                content: "+";
+                position: absolute;
+                left: -1.75em;
+                transform-origin: center center;
+                scale: 1.4;
+                font-weight: 500;
+              }
+            }
+          }
+        }
+      }
+
+      #navbar-wrapper {
+        grid-area: navbar;
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: relative;
+
+        #navbar {
+          width: 100%;
+          height: 100%;
+          display: grid;
+          position: absolute;
+          grid-template: "space" 30fr "options" 79fr "history" 720fr;
+          gap: .66em;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 1.1em;
+            @width: 80%;
+            width: @width;
+            margin-left: calc((100% - @width) / 2);
+            height: 1.75px;
+            background-color: var(--default-white-groove);
+          }
+
+          #options-wrapper {
+            grid-area: options;
+            width: 100%;
+            height: 100%;
+            position: relative;
+
+
+            #options {
+              width: 100%;
+              height: 100%;
+              position: absolute;
+              display: flex;
+              place-content: space-between;
+              padding: .5em 1.15em;
+              gap: .5em;
+
+              #search-wrapper {
+                width: 100%;
+                height: 100%;
+                position: relative;
+
+                &::after {
+                  content: "";
+                  position: absolute;
+                  height: 100%;
+                  aspect-ratio: 1 / 1;
+                  top: 0;
+                  left: 0;
+                  background-image: url("/src/assets/Search.svg");
+                  background-position: center center;
+                  background-repeat: no-repeat;
+                  background-size: 50% 50%;
+                }
+
+                #search {
+                  width: 100%;
+                  height: 100%;
+                  padding: 12px 20px;
+                  text-indent: 1.25em;
+                  border-radius: 2em;
+                  outline: none;
+                  flex: 1 1 auto;
+                  background: rgba(224, 229, 237, 1);
+                  color: var(--default-half-gray);
+                  position: relative;
+                  border: outset 1px transparent;
+
+                  &:focus {
+                    border: outset 1px var(--default-half-gray);
+                  }
+
+                  &:active {
+                    border: inset 1px var(--default-half-gray);
+                  }
+                }
+              }
+
+              #delete {
+                height: 100%;
+                aspect-ratio: 1 / 1;
+                border-radius: 100%;
+                background: rgba(224, 229, 237, 1);
+                position: relative;
+
+                &::after {
+                  content: "";
+                  position: absolute;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  background-image: url("/src/assets/Trash.svg");
+                  background-position: center center;
+                  background-repeat: no-repeat;
+                  background-size: 50% 50%;
+                }
+              }
+            }
+          }
+
+          #history-wrapper {
+            grid-area: history;
+            width: 100%;
+            height: 100%;
+            position: relative;
+
+            #history-container {
+              width: 100%;
+              height: 100%;
+              position: absolute;
+              overflow-y: scroll;
+
+              .disable-browser-scrollbar();
+
+              .history-item {
+                height: 3em;
+                line-height: 3em;
+                width: 88%;
+                margin: 0 auto;
+                border-radius: 0.66em;
+                text-align: left;
+                text-indent: 1em;
+                font-size: 0.88em;
+
+                &:hover {
+                  background: rgba(255, 255, 255, 0.6666);
+                }
+
+                &.selected {
+                  background: rgba(22, 27, 8, 0.56* 0.13);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  main#chatpkg-wrapper  {
+    grid-area: cmain;
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: relative;
+    background: linear-gradient(
+        180deg, #f3f3f6 0%, #e9edf7 100%
+    );
+
+    #chatpkg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-color: transparent;
+      grid-template: "container" 768fr "ipt-area" 320fr;
+      display: grid;
+
+      #decoration {
+        position: fixed;
+        @bias: 3px;
+        top: -1 * @bias;
+        height: @bias;
+        width: 100%;
+        box-shadow: -23.3px 5px 8px #eff0f7;
+      }
+
+      #chat-container {
+        grid-area: container;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        overflow-y: scroll;
+        padding: 5em 0 1em;
+        .disable-browser-scrollbar();
+      }
+
+      #user-ipt-wrapper {
+        width: 100%;
+        height: 100%;
+        grid-area: ipt-area;
+        @bg-color: #e9edf7;
+        background-color: #e9edf7;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          @bias: 3px;
+          box-shadow: 0 @bias*-2+3 4px desaturate(@bg-color, 30%);
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: @bias;
+        }
+
+        #text-area-wrapper {
+          width: 64.6%;
+          height: 72%;
+          margin: 1em auto 1em;
+          flex: 0 1 auto;
+          position: relative;
+
+          textarea#input {
+            width: 100%;
+            height: 100%;
+            outline: none;
+            background-color: #fff;
+            border-radius: .75em;
+            color: var(--default-black);
+            padding: .88em;
+            resize: none;
+            font-size: 1.33em;
+            font-weight: 500;
+            border: 2px ridge rgba(0, 0, 0, .015);
+
+            .default-shadow-outset();
+
+            &:focus {
+              border: 2px outset rgba(41, 52, 255, 1);
+              transition: none;
+            }
+          }
+
+          #sender {
+            &.v1 {
+              width: 3.66em;
+              height: 2.33em;
+              &::after {
+                // 后面的小飞机大小
+                background-size: 66% 66%;
+              }
+            }
+            &.v2 {
+              width: 3.66em;
+              height: 2em;
+              &::after {
+                background-size: 52% 52%;
+              }
+            }
+            right: .75em;
+            bottom: .75em;
+            position: absolute;
+            border-radius: 2em;
+            background-color: rgba(0, 252, 240, 1);
+            transform-origin: center center;
+
+            .default-shadow-mini-outset();
+
+            &:hover {
+              scale: 1.05;
+            }
+
+            &:active {
+              opacity: 0.5;
+            }
+
+            &::after {
+              content: "";
+              display: block;
+              position: absolute;
+              height: 100%;
+              width: 100%;
+              top: 0;
+              left: 0;
+              background-image: url("/src/assets/Send.svg");
+              background-position: center center;
+              background-repeat: no-repeat;
+              transform-origin: center center;
+            }
+          }
+        }
+
+        #copyright {
+          color: var(--default-half-gray);
+          font-size: .8em;
+        }
+      }
+    }
+  }
+}

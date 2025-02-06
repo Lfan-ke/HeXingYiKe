@@ -1,0 +1,244 @@
+// author: Leo Cheng
+// 这里存着以CSS变量驱动的动画帧信息，使用方式，例：scale: calc(xxx * --offset);
+/* transform: rotate3d(0, 1, 0, .transition(0deg, 45deg)[@return]);
+ * animation: --offset-easeOutElastic .3s linear normal forwards;
+ * 相当于：.animation(transform; rotateY; 0deg; -45deg)
+ * 或：
+ * transform: rotate3d(0, -1, 0, 0deg);
+ * transition: transform .3s ease-in;
+ * transform: rotate3d(0, -1, 0, 45deg);
+**/
+.transition(@from, @to) {
+  --offset: 1;
+  @return: calc(calc(@from) * (var(--offset) - 0) + calc(@to) * (1 - var(--offset)));
+}
+
+.animation(@key, @from, @to, @animation: --offset-easeOutElastic, @duration: .3s, @delay: 0s, @time-func: ease) {
+  // key: xxx的属性变化动画
+  @{key}: .transition(@from, @to)[@return];
+  animation: @animation @duration @time-func forwards;
+  animation-delay: @delay;
+}
+
+/* //transform: rotate3d(0, -1, 0, 0deg);
+ * //transition: transform .3s ease-in;
+ * //transform: rotate3d(0, -1, 0, 45deg);
+ * 使用下面的代替上面的
+ * .animation(transform; rotateY; 0deg; -45deg)
+ **/
+.animation-func(@key, @func, @from, @to, @animation: --offset-easeOutElastic, @duration: .3s, @delay: 0s) {
+  // key: func(xxx)的属性变化动画
+  @{key}: ~'@{func}('.transition(@from, @to)[@return]~')';
+  animation: @animation @duration ease forwards;
+  animation-delay: @delay;
+}
+
+@keyframes --offset-easeOutElastic {
+  0% {
+    --offset: 1;
+  }
+
+  16% {
+    --offset: -0.3227;
+  }
+
+  28% {
+    --offset: 0.1312;
+  }
+
+  44% {
+    --offset: -0.0463;
+  }
+
+  59% {
+    --offset: 0.0164;
+  }
+
+  73% {
+    --offset: -0.005799;
+  }
+
+  88% {
+    --offset: 0.002;
+  }
+
+  100% {
+    --offset: 0;
+  }
+
+}
+
+
+@keyframes --offset-easeInOutElastic {
+  0% {
+    --offset: 1.0;
+  }
+
+  4% {
+    --offset: 0.9992;
+  }
+
+  8% {
+    --offset: 0.999;
+  }
+
+  18% {
+    --offset: 1.0051999;
+  }
+
+  20% {
+    --offset: 1.0039;
+  }
+
+  28% {
+    --offset: 0.9765;
+  }
+
+  30% {
+    --offset: 0.9761;
+  }
+
+  38% {
+    --offset: 1.0927;
+  }
+
+  40% {
+    --offset: 1.1175;
+  }
+
+  60% {
+    --offset: -0.1175;
+  }
+
+  62% {
+    --offset: -0.0926999;
+  }
+
+  70% {
+    --offset: 0.0239;
+  }
+
+  72% {
+    --offset: 0.023499;
+  }
+
+  80% {
+    --offset: -0.0039;
+  }
+
+  82% {
+    --offset: -0.005199;
+  }
+
+  90% {
+    --offset: 0.0003;
+  }
+
+  92% {
+    --offset: 0.00099;
+  }
+
+  100% {
+    --offset: .0;
+  }
+
+}
+
+@keyframes --offset-easeInOutBounce {
+  0% {
+    --offset: 1.0;
+  }
+
+  2% {
+    --offset: 0.9923;
+  }
+
+  4% {
+    --offset: 0.9967;
+  }
+
+  10% {
+    --offset: 0.97123;
+  }
+
+  14% {
+    --offset: 0.9902;
+  }
+
+  22% {
+    --offset: 0.8758;
+  }
+
+  32% {
+    --offset: 0.99;
+  }
+
+  42% {
+    --offset: 0.5968;
+  }
+
+  50% {
+    --offset: .5;
+  }
+
+  58% {
+    --offset: 0.40321;
+  }
+
+  68% {
+    --offset: .009899;
+  }
+
+  78% {
+    --offset: 0.1242;
+  }
+
+  86% {
+    --offset: 0.0098;
+  }
+
+  90% {
+    --offset: .03012;
+  }
+
+  96% {
+    --offset: .003299;
+  }
+
+  98% {
+    --offset: .007699;
+  }
+
+  100% {
+    --offset: .0;
+  }
+
+}
+
+@keyframes --offset-easeInOutQuint {
+
+  0% {
+    --offset: calc(1);
+  }
+
+  33.33% {
+    --offset: calc(1 - (1 / 8));
+  }
+
+  44% {
+    --offset: calc(2 / 3);
+  }
+
+  55% {
+    --offset: calc(1 / 3);
+  }
+
+  66.67% {
+    --offset: calc(1 / 8);
+  }
+
+  100% {
+    --offset: 0;
+  }
+
+}
